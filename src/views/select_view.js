@@ -9,10 +9,14 @@ class SelectView {
   // Subscribes to data channel from model and populates dropdown
   bindEvents() {
     PubSub.subscribe('InstrumentFamilies:all-ready', (event) => {
-      console.log('InstrumentFamilies:all-ready channel working');
-      console.dir(event.detail);
       this.populate_instruments(event.detail)
     });
+
+    this.element.addEventListener('change', (event) => {
+      const selectedIndex = event.target.value;
+      PubSub.publish('SelectView:change', selectedIndex);
+    });
+
   };
 
   populate_instruments(instrumentsData){
