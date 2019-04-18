@@ -12,8 +12,13 @@ class InstrumentFamilies {
     PubSub.publish('InstrumentFamilies:all-ready', this.data);
 
     PubSub.subscribe('SelectView:change', (event) => {
-      console.log('SelectView:change working');
+      this.selectData(event.detail);
     });
+  };
+
+  selectData(index) {
+    const selectedData = this.data[index];
+    PubSub.publish('SelectedInstrument:ready', selectedData);
   };
 
 };
