@@ -10,6 +10,7 @@ class InstrumentFamilies {
   // On instantiation publishes data. Subscribe to change event from SelectView.
   bindEvents() {
     PubSub.publish('InstrumentFamilies:all-ready', this.data);
+    
   };
 
 };
